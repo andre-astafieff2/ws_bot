@@ -107,16 +107,7 @@ function start(client) {
 
 initVenom("WZQuitandinha");
 
-app.get('/sts', async (req, res) => {
-  try {
-    let status = await global.WA_STATUS
-    //console.log('chmou contatos')
-    return res.status(200).json(status)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ status: "error", message: error })
-  }
-})
+app.get('/sts', getStatus)
 
 app.post('/imageMessage', sendImageMessage)
 
@@ -126,7 +117,7 @@ app.get("/qr", getQR);
 app.post('/file', uploads.single('file'),  (req, res)  => {
   try {
       //res.send('Arquivo enviado com sucesso: ' + req.file.filename);
-      return res.status(200).json({status: "ok", arquivo: req.file.filename})
+      //return res.status(200).json({status: "ok", arquivo: req.file.filename})
   } catch (error) {
       //console.log(error);
   }

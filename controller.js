@@ -41,7 +41,7 @@ function getQR(req, res) {
       }
       return res.status(200).send({ status: status });
     } catch(e){
-      return res.status(200).send({ status: 'error while getting status', error: e });
+      return res.status(400).send({ status: 'error while getting status', error: e });
     }
   }
 
@@ -53,7 +53,7 @@ function getQR(req, res) {
         //}
         return res.status(200).send(contatos)
     }catch(e){
-        return res.status(200).send({status:"ERR", erro: e})
+        return res.status(400).send({status:"ERR", erro: e})
     }
   }
   

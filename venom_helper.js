@@ -4,7 +4,7 @@ const fs = require("fs");
 async function initVenom(sessionName) {
     if (global.WA_CLIENT) {
       await global.WA_CLIENT.logout();
-      await fs.rmdirSync("tokens", {
+      fs.rmdirSync("tokens", {
         recursive: true
       });
     }
