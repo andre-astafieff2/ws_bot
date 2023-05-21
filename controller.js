@@ -40,9 +40,9 @@ function getQR(req, res) {
         //console.log("global.WA_CLIENT.getConnectionState()", await global.WA_CLIENT.getConnectionState())
       }
       //return res.status(200).send({ status: status });
-      return res.status(200).json(status)
+      return res.status(200).send(status)
     } catch(e){
-      return res.status(400).json({ status: 'error while getting status', error: e });
+      return res.status(400).send({ status: 'error while getting status', error: e });
     }
   }
 
@@ -52,9 +52,9 @@ function getQR(req, res) {
         //if(global.WA_CLIENT){
             contatos = await global.WA_CLIENT.getAllContacts()
         //}
-        return res.status(200).json(contatos)
+        return res.status(200).send(contatos)
     }catch(e){
-        return res.status(400).json({status:"ERR", erro: e})
+        return res.status(400).send({status:"ERR", erro: e})
     }
   }
   
@@ -76,7 +76,7 @@ function getQR(req, res) {
      // //await global.WA_CLIENT.sendText(`${phone}@c.us`, message)
       await global.WA_CLIENT.sendImage(contact, imagePath,image,label)
         .then((result) => {
-          return res.status(200).json({ result: result });
+          return res.status(200).send({ result: result });
         })
         //.catch((err) => {
         //  return res.status(400).json({ error: err });
