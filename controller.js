@@ -66,7 +66,7 @@ function getQR(req, res) {
     try {
       const { contact, name, image, label } = req.body;
       //console.log(req.body)
-      const imagePath = './uploads/'+image;
+      const imagePath = './'+image;
       //if (!contact || !label) {
       //  return res
       //    .status(404)
