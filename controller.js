@@ -40,7 +40,7 @@ function getQR(req, res) {
         //console.log("global.WA_CLIENT.getConnectionState()", await global.WA_CLIENT.getConnectionState())
       }
       //return res.status(200).send({ status: status });
-      return res.status(200).send(status)
+      return res.status(200).json(status)
     } catch(e){
       return res.status(400).send({ status: 'error while getting status', error: e });
     }
