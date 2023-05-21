@@ -108,9 +108,7 @@ function start(client) {
 initVenom("WZQuitandinha");
 
 app.get('/sts', getStatus)
-
 app.post('/imageMessage', sendImageMessage)
-
 app.get("/contatos", getContacts);
 app.get("/qr", getQR);
 

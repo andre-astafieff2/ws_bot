@@ -11,7 +11,7 @@ function getQR(req, res) {
         }
       }
       if (!global.WA_QR) {
-        return res.status(404).send({ error: "QR not found / not generated" });
+        //return res.status(404).send({ error: "QR not found / not generated" });
       } else {
         const im = global.WA_QR.split(",")[1];
   
@@ -36,12 +36,13 @@ function getQR(req, res) {
     try {
       let status = global.WA_STATUS
       if (global.WA_CLIENT) {
-        status = await global.WA_CLIENT.getConnectionState()
-        console.log("global.WA_CLIENT.getConnectionState()", await global.WA_CLIENT.getConnectionState())
+        status = await global.WA_STATUS 
+        //console.log("global.WA_CLIENT.getConnectionState()", await global.WA_CLIENT.getConnectionState())
       }
-      return res.status(200).send({ status: status });
+      //return res.status(200).send({ status: status });
+      return res.status(200).json(status)
     } catch(e){
-      return res.status(400).send({ status: 'error while getting status', error: e });
+      return res.status(400).json({ status: 'error while getting status', error: e });
     }
   }
 
@@ -51,9 +52,9 @@ function getQR(req, res) {
         //if(global.WA_CLIENT){
             contatos = await global.WA_CLIENT.getAllContacts()
         //}
-        return res.status(200).send(contatos)
+        return res.status(200).json(contatos)
     }catch(e){
-        return res.status(400).send({status:"ERR", erro: e})
+        return res.status(400).json({status:"ERR", erro: e})
     }
   }
   
@@ -64,25 +65,29 @@ function getQR(req, res) {
       const { contact, name, image, label } = req.body;
       //console.log(req.body)
       const imagePath = './uploads/'+image;
-      if (!contact || !label) {
-        return res
-          .status(404)
-          .send({ error: "phone / message is missing " });
-      }
-      if (!global.WA_CLIENT) {
-        return res.status(404).send({ error: "Client not found, please init" });
-      }
-      //await global.WA_CLIENT.sendText(`${phone}@c.us`, message)
+      //if (!contact || !label) {
+      //  return res
+      //    .status(404)
+      //    .send({ error: "phone / message is missing " });
+     // }
+     // if (!global.WA_CLIENT) {
+     //   return res.status(404).send({ error: "Client not found, please init" });
+     // }
+     // //await global.WA_CLIENT.sendText(`${phone}@c.us`, message)
       await global.WA_CLIENT.sendImage(contact, imagePath,image,label)
         .then((result) => {
-          return res.status(200).send({ result: result });
+          return res.status(200).json({ result: result });
         })
-        .catch((err) => {
-          return res.status(400).send({ error: err });
-        });
+        //.catch((err) => {
+        //  return res.status(400).json({ error: err });
+        //});
     } catch (e) {
       return res.status(400).send({ status: "unable to send message", error: e });
     }
+  }
+
+  async function Status(req, res){
+
   }
   
   module.exports = {
