@@ -1,5 +1,6 @@
 function getQR(req, res) {
     try {
+      /*
       if (global.WA_STATUS) {
         switch (global.WA_STATUS) {
           case "chatsAvailable":
@@ -10,6 +11,7 @@ function getQR(req, res) {
             break;
         }
       }
+      */
       if (!global.WA_QR) {
         //return res.status(404).send({ error: "QR not found / not generated" });
       } else {
@@ -23,7 +25,7 @@ function getQR(req, res) {
         });
   
         res.end(img);
-        return res.status(200).send(global.WA_QR);
+        //return res.status(200).send(global.WA_QR);
       }
     } catch (e) {
       return res
