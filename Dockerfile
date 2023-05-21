@@ -6,6 +6,8 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 WORKDIR /usr/src/app
 RUN mkdir -p /usr/src/app/uploads
 
+RUN sudo chmod -R 777 /usr/src/app/uploads
+
 COPY package*.json ./
 RUN npm ci
 COPY . .
