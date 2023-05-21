@@ -128,7 +128,7 @@ app.post('/file', uploads.single('file'),  (req, res)  => {
       //res.send('Arquivo enviado com sucesso: ' + req.file.filename);
       return res.status(200).json({status: "ok", arquivo: req.file.filename})
   } catch (error) {
-      console.log(error);
+      //console.log(error);
   }
 })
 
