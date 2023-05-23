@@ -16,6 +16,23 @@ app.use(express.json()); //parser used for requests via post,
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: true }));
 
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    return val;
+  }
+
+  if (port >= 0) {
+    return port;
+  }
+
+  return false;
+}
+
+//const port = normalizePort(process.env.PORT || 3000);
+const port = parseInt(process.env.PORT) || 8080;
+
 /*
 venom
   .create(
@@ -121,6 +138,6 @@ app.post('/file', uploads.single('file'),  (req, res)  => {
   }
 })
 //mudança de porta
-app.listen(5000, () => {
+app.listen(port, () => {
   console.log('subiu')
 })
