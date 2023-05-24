@@ -31,7 +31,7 @@ function normalizePort(val) {
 }
 
 //const port = normalizePort(process.env.PORT || 3000);
-const port = parseInt(process.env.PORT) || 8443;
+const port = parseInt(process.env.PORT) || 8080;
 
 /*
 venom
