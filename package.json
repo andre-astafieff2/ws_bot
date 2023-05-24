@@ -4,7 +4,8 @@
   "description": "Api para envio de mensagens em massa",
   "main": "app",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "node node_modules/puppeteer/install.js"
   },
   "engines": {
     "node": ">=18.0.0"
